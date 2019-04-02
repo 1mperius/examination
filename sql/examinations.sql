@@ -1,5 +1,4 @@
-CREATE TABLE `table_1` (
-);
+
 CREATE TABLE `t_Admin` (
 `AdId` int(10) NOT NULL,
 `AdAccount` varchar(40) NULL,
@@ -31,7 +30,7 @@ CREATE TABLE `t_CollegeMark` (
 `ColMaxMark` int(20) NULL,
 `ColMinMark` int(20) NULL,
 `ColAveMark` int(20) NULL,
-`ColNumber` int(1000) NULL,
+`ColNumber` int(20) NULL,
 `Province` varchar(40) NULL,
 PRIMARY KEY (`ColId`) 
 );
