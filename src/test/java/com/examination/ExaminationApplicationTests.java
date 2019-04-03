@@ -11,6 +11,7 @@ public class ExaminationApplicationTests {
 
     @Test
     public void contextLoads() {
+        System.out.println();
     }
 
 }
