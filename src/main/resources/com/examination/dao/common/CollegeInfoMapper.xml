@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.examination.dao.common.CollegeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.examination.model.po.CollegeInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="col_name" property="colName" jdbcType="VARCHAR" />
+    <result column="col_type" property="colType" jdbcType="VARCHAR" />
+    <result column="col_tel" property="colTel" jdbcType="VARCHAR" />
+    <result column="col_url" property="colUrl" jdbcType="VARCHAR" />
+    <result column="col_address" property="colAddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.examination.model.po.CollegeInfo" extends="BaseResultMap" >
+    <result column="col_logo" property="colLogo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, col_name, col_type, col_tel, col_url, col_address
+  </sql>
+  <sql id="Blob_Column_List" >
+    col_logo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_college_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_college_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.examination.model.po.CollegeInfo" >
+    insert into t_college_info (id, col_name, col_type, 
+      col_tel, col_url, col_address, 
+      col_logo)
+    values (#{id,jdbcType=INTEGER}, #{colName,jdbcType=VARCHAR}, #{colType,jdbcType=VARCHAR}, 
+      #{colTel,jdbcType=VARCHAR}, #{colUrl,jdbcType=VARCHAR}, #{colAddress,jdbcType=VARCHAR}, 
+      #{colLogo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.examination.model.po.CollegeInfo" >
+    insert into t_college_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="colName != null" >
+        col_name,
+      </if>
+      <if test="colType != null" >
+        col_type,
+      </if>
+      <if test="colTel != null" >
+        col_tel,
+      </if>
+      <if test="colUrl != null" >
+        col_url,
+      </if>
+      <if test="colAddress != null" >
+        col_address,
+      </if>
+      <if test="colLogo != null" >
+        col_logo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="colName != null" >
+        #{colName,jdbcType=VARCHAR},
+      </if>
+      <if test="colType != null" >
+        #{colType,jdbcType=VARCHAR},
+      </if>
+      <if test="colTel != null" >
+        #{colTel,jdbcType=VARCHAR},
+      </if>
+      <if test="colUrl != null" >
+        #{colUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="colAddress != null" >
+        #{colAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="colLogo != null" >
+        #{colLogo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.examination.model.po.CollegeInfo" >
+    update t_college_info
+    <set >
+      <if test="colName != null" >
+        col_name = #{colName,jdbcType=VARCHAR},
+      </if>
+      <if test="colType != null" >
+        col_type = #{colType,jdbcType=VARCHAR},
+      </if>
+      <if test="colTel != null" >
+        col_tel = #{colTel,jdbcType=VARCHAR},
+      </if>
+      <if test="colUrl != null" >
+        col_url = #{colUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="colAddress != null" >
+        col_address = #{colAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="colLogo != null" >
+        col_logo = #{colLogo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.examination.model.po.CollegeInfo" >
+    update t_college_info
+    set col_name = #{colName,jdbcType=VARCHAR},
+      col_type = #{colType,jdbcType=VARCHAR},
+      col_tel = #{colTel,jdbcType=VARCHAR},
+      col_url = #{colUrl,jdbcType=VARCHAR},
+      col_address = #{colAddress,jdbcType=VARCHAR},
+      col_logo = #{colLogo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.examination.model.po.CollegeInfo" >
+    update t_college_info
+    set col_name = #{colName,jdbcType=VARCHAR},
+      col_type = #{colType,jdbcType=VARCHAR},
+      col_tel = #{colTel,jdbcType=VARCHAR},
+      col_url = #{colUrl,jdbcType=VARCHAR},
+      col_address = #{colAddress,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

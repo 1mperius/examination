@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.examination.dao.common.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.examination.model.po.Admin" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ad_name" property="adName" jdbcType="VARCHAR" />
+    <result column="ad_account" property="adAccount" jdbcType="VARCHAR" />
+    <result column="ad_password" property="adPassword" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ad_name, ad_account, ad_password
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.examination.model.po.Admin" >
+    insert into t_admin (id, ad_name, ad_account, 
+      ad_password)
+    values (#{id,jdbcType=INTEGER}, #{adName,jdbcType=VARCHAR}, #{adAccount,jdbcType=VARCHAR}, 
+      #{adPassword,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.examination.model.po.Admin" >
+    insert into t_admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="adName != null" >
+        ad_name,
+      </if>
+      <if test="adAccount != null" >
+        ad_account,
+      </if>
+      <if test="adPassword != null" >
+        ad_password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="adName != null" >
+        #{adName,jdbcType=VARCHAR},
+      </if>
+      <if test="adAccount != null" >
+        #{adAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="adPassword != null" >
+        #{adPassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.examination.model.po.Admin" >
+    update t_admin
+    <set >
+      <if test="adName != null" >
+        ad_name = #{adName,jdbcType=VARCHAR},
+      </if>
+      <if test="adAccount != null" >
+        ad_account = #{adAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="adPassword != null" >
+        ad_password = #{adPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.examination.model.po.Admin" >
+    update t_admin
+    set ad_name = #{adName,jdbcType=VARCHAR},
+      ad_account = #{adAccount,jdbcType=VARCHAR},
+      ad_password = #{adPassword,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

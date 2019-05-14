@@ -1,0 +1,45 @@
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+
+#公共配置与profiles选择无关
+mybatis:
+  typeAliasesPackage: com.examination.model
+  mapperLocations: classpath:mapper/*.xml
+
+
+---
+
+#开发配置
+spring:
+  profiles: dev
+
+  datasource:
+    url: jdbc:log4jdbc:mysql://www.znzn.me/ex?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: d2a19315fc5680683589955fb24388c3925e72416c502b63
+    #不输出日志
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #输出日志
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+mybatis-plus:
+  type-aliases-package: com.examination.model.po
+#  mapper-locations: classpath:com.examination.dao.common/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      column-like: true
+    id-type:
+      0
+    field-strategy:
+      2
+    db-column-underline:
+      true
+    tablePrefix:
+      t_
