@@ -1,9 +1,7 @@
 package com.examination;
 
 import com.examination.service.CollegeInfoService;
-import com.examination.service.LoginService;
 import com.examination.service.StudentInfoService;
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
